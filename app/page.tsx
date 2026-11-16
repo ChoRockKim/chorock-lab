@@ -18,6 +18,10 @@ export default function Home() {
         </p>
       </header>
 
+      {items.length === 0 && (
+        <p className={styles.empty}>아직 올린 실험이 없습니다.</p>
+      )}
+
       <ul className={styles.list}>
         {items.map((item) => (
           <li key={item.slug}>

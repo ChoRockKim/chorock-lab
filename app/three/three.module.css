@@ -1,0 +1,321 @@
+/* three.js 노트의 목차와 각 페이지가 함께 쓰는 스타일 */
+
+/* 목차 */
+.index {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 88px 20px 96px;
+}
+
+.header {
+  margin-bottom: 36px;
+}
+
+.title {
+  font-size: 30px;
+  letter-spacing: -0.02em;
+}
+
+.lead {
+  margin-top: 8px;
+  color: var(--muted);
+}
+
+.toc {
+  list-style: none;
+  border-top: 1px solid var(--line);
+}
+
+.row {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 18px 4px;
+  border-bottom: 1px solid var(--line);
+}
+
+a.row:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+@media (hover: hover) {
+  a.row:hover .name {
+    color: var(--accent);
+  }
+}
+
+.disabled {
+  opacity: 0.5;
+}
+
+.number {
+  font-size: 13px;
+  color: var(--muted);
+  font-variant-numeric: tabular-nums;
+}
+
+.text {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-width: 0;
+}
+
+.name {
+  font-weight: 600;
+  transition: color 0.2s ease;
+}
+
+.summary {
+  font-size: 14px;
+  color: var(--muted);
+}
+
+.soon {
+  flex-shrink: 0;
+  font-size: 12px;
+  padding: 2px 8px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  color: var(--muted);
+}
+
+/* 개별 페이지: 왼쪽 설명, 오른쪽에 붙어 다니는 캔버스와 조절판 */
+.lesson {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: 40px;
+  max-width: 1160px;
+  margin: 0 auto;
+  padding: 88px 20px 96px;
+}
+
+.prose h1 {
+  font-size: 28px;
+  letter-spacing: -0.02em;
+}
+
+.kicker {
+  font-size: 13px;
+  color: var(--accent);
+  font-variant-numeric: tabular-nums;
+}
+
+.prose h2 {
+  margin-top: 36px;
+  font-size: 19px;
+}
+
+.prose p,
+.prose ul {
+  margin-top: 12px;
+}
+
+.prose ul {
+  padding-left: 20px;
+}
+
+.prose li + li {
+  margin-top: 6px;
+}
+
+.prose code {
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 0.9em;
+  padding: 1px 5px;
+  border-radius: 5px;
+  background: var(--line);
+}
+
+.next {
+  margin-top: 40px;
+  padding-top: 20px;
+  border-top: 1px solid var(--line);
+  color: var(--muted);
+  font-size: 14px;
+}
+
+.next a {
+  color: var(--accent);
+}
+
+.next a:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+.panel {
+  position: sticky;
+  top: 24px;
+  align-self: start;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.canvas {
+  position: relative;
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  background: var(--card);
+}
+
+.canvas canvas {
+  position: absolute;
+  inset: 0;
+  display: block;
+}
+
+/* WebGL을 쓸 수 없으면 캔버스가 생기지 않아 이 문구가 그대로 보인다. */
+.fallback {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  padding: 20px;
+  text-align: center;
+  font-size: 14px;
+  color: var(--muted);
+}
+
+.frames {
+  position: absolute;
+  left: 12px;
+  bottom: 10px;
+  z-index: 1;
+  font-size: 12px;
+  color: var(--muted);
+  font-variant-numeric: tabular-nums;
+}
+
+.controls {
+  display: grid;
+  gap: 12px;
+  padding: 16px;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  background: var(--card);
+}
+
+.control {
+  display: grid;
+  grid-template-columns: 96px minmax(0, 1fr) 52px;
+  align-items: center;
+  gap: 12px;
+  font-size: 14px;
+}
+
+/* 이름표와 선택 버튼 묶음을 한 줄에 놓는다. 첫 열 너비는 .control과 같다. */
+.row {
+  display: grid;
+  grid-template-columns: 96px minmax(0, 1fr);
+  align-items: center;
+  gap: 12px;
+  font-size: 14px;
+}
+
+.control input[type="range"] {
+  width: 100%;
+  accent-color: var(--accent);
+}
+
+.control output {
+  text-align: right;
+  color: var(--muted);
+  font-variant-numeric: tabular-nums;
+}
+
+.buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.button {
+  padding: 6px 14px;
+  font: inherit;
+  font-size: 14px;
+  color: var(--fg);
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: transparent;
+  cursor: pointer;
+}
+
+.button[aria-pressed="true"] {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+.button:disabled {
+  opacity: 0.45;
+  cursor: default;
+}
+
+.button:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+@media (hover: hover) {
+  .button:not(:disabled):hover {
+    border-color: var(--accent);
+  }
+}
+
+.note {
+  font-size: 13px;
+  color: var(--muted);
+}
+
+.code {
+  overflow-x: auto;
+  padding: 16px;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  background: var(--card);
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 12.5px;
+  line-height: 1.7;
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
+/* 캔버스가 투명하므로, 캔버스가 생기면 안내 문구를 숨긴다. */
+.canvas:has(canvas) .fallback {
+  display: none;
+}
+
+/* 조절판에서 바꾼 값이 코드의 어디에 들어가는지 표시한다. */
+.value {
+  color: var(--accent);
+  font-weight: 600;
+}
+
+@media (max-width: 900px) {
+  .lesson {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 28px;
+  }
+
+  /* 좁은 화면에서는 장면과 조절판, 설명, 코드 순서로 쌓는다.
+     panel을 풀어 그 자식들이 직접 격자 항목이 되게 한다. */
+  .panel {
+    display: contents;
+  }
+
+  .canvas {
+    order: -2;
+  }
+
+  .controls {
+    order: -1;
+  }
+
+  .code {
+    order: 1;
+  }
+}

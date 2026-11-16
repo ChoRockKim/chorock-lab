@@ -19,7 +19,11 @@ npm run lint
 
 루트 레이아웃은 비어 있으므로 실험마다 `layout.tsx`를 따로 둘 수 있다. 목록으로 돌아가는 링크가 필요하면 `components/BackToLab.tsx`를 쓴다.
 
-`app/spring-ball`이 예시다.
+## three.js 노트 (`/three`)
+
+three.js를 배우면서 정리하는 인터랙티브 노트다. 목차는 `lib/three/lessons.ts`가 단일 출처이고, `ready: true`인 항목만 링크가 된다.
+
+페이지를 추가하려면 `app/three/<slug>/page.tsx`를 만들고 목차의 해당 항목을 `ready: true`로 바꾼다. 장면은 `lib/three/createStage.ts`로 만든다. 크기 대응, 렌더 루프, 정리(`dispose`)를 이 함수가 처리하므로 페이지는 물체와 조절판만 다루면 된다. `app/three/scene`이 예시다. 직접 만든 카메라로 그리려면 `stage.view`에 넣고 `stage.onResize`에서 비율을 맞춘다(`app/three/camera`).
 
 ## Next가 아닌 스택으로 만든 실험
 

@@ -24,6 +24,10 @@
   text-underline-offset: 3px;
 }
 
+.empty {
+  color: var(--muted);
+}
+
 .list {
   list-style: none;
   display: grid;

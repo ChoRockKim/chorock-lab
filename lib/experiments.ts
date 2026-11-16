@@ -11,11 +11,11 @@ export type Experiment = {
 
 export const experiments: Experiment[] = [
   {
-    slug: "spring-ball",
-    title: "스프링 공",
-    summary: "공을 끌었다 놓으면 스프링 물리로 제자리에 돌아옵니다.",
+    slug: "three",
+    title: "three.js 노트",
+    summary: "three.js를 배우면서 정리합니다. 값을 바꾸면 장면과 코드가 함께 바뀝니다.",
     date: "2026-11-16",
-    tags: ["물리", "포인터 이벤트"],
+    tags: ["three.js", "WebGL"],
   },
 ];
 
