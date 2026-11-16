@@ -1,36 +1,26 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# chorock lab
 
-## Getting Started
+작은 실험을 모아 두는 사이트입니다. 주소는 https://lab.chorock.page 이고, 글은 https://chorock.page 에 씁니다.
 
-First, run the development server:
+## 실행
 
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+npm run build   # 타입 검사 포함
+npm run lint
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## 실험 추가하기
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+1. `app/<slug>/page.tsx`를 만든다. 폴더 이름이 주소가 된다(`lab.chorock.page/<slug>`). slug는 영문 소문자와 하이픈만 쓴다.
+2. `lib/experiments.ts`의 `experiments` 배열에 같은 slug로 한 줄을 추가한다. 기본 주소의 목록은 이 배열로 그린다.
+3. 스타일은 그 폴더 안의 CSS 모듈에 둔다. `app/globals.css`에는 모든 실험이 공유하는 바탕만 있다.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+루트 레이아웃은 비어 있으므로 실험마다 `layout.tsx`를 따로 둘 수 있다. 목록으로 돌아가는 링크가 필요하면 `components/BackToLab.tsx`를 쓴다.
 
-## Learn More
+`app/spring-ball`이 예시다.
 
-To learn more about Next.js, take a look at the following resources:
+## Next가 아닌 스택으로 만든 실험
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+별도 Vercel 프로젝트로 배포한 뒤 `next.config.ts`의 `rewrites`로 `/<slug>/:path*`를 그 배포 주소로 넘긴다. 주소는 그대로 `lab.chorock.page/<slug>`가 된다.
